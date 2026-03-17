@@ -69,7 +69,48 @@ def load_app_data():
 
 @st.cache_data(ttl=86400)  # Cache for 24 hours
 def fetch_vegas_odds():
-    """Fetch NCAAB odds ONCE per day. Returns {team_name: implied_probability}."""
+    """Fetch NCAAB odds ONCE per day. Returns {short_name: implied_probability}."""
+    # Mapping from API full names to our bracket short names
+    API_NAME_MAP = {
+        "Duke Blue Devils":"Duke","Siena Saints":"Siena","Ohio State Buckeyes":"Ohio State",
+        "TCU Horned Frogs":"TCU","St. John's Red Storm":"St. John's","St John's Red Storm":"St. John's",
+        "Northern Iowa Panthers":"Northern Iowa","Kansas Jayhawks":"Kansas",
+        "Cal Baptist Lancers":"Cal Baptist","California Baptist Lancers":"Cal Baptist",
+        "Louisville Cardinals":"Louisville","South Florida Bulls":"South Florida",
+        "Michigan State Spartans":"Michigan State","North Dakota State Bison":"North Dakota St",
+        "UCLA Bruins":"UCLA","UCF Knights":"UCF","UConn Huskies":"UConn",
+        "Connecticut Huskies":"UConn","Furman Paladins":"Furman",
+        "Arizona Wildcats":"Arizona","LIU Sharks":"LIU",
+        "Villanova Wildcats":"Villanova","Utah State Aggies":"Utah State",
+        "Wisconsin Badgers":"Wisconsin","High Point Panthers":"High Point",
+        "Arkansas Razorbacks":"Arkansas","Hawaii Rainbow Warriors":"Hawaii",
+        "BYU Cougars":"BYU","NC State Wolfpack":"NC State",
+        "Gonzaga Bulldogs":"Gonzaga","Kennesaw State Owls":"Kennesaw State",
+        "Miami Hurricanes":"Miami","Miami (FL) Hurricanes":"Miami",
+        "Missouri Tigers":"Missouri","Purdue Boilermakers":"Purdue",
+        "Queens Royals":"Queens","Queens (NC) Royals":"Queens",
+        "Florida Gators":"Florida","Lehigh Mountain Hawks":"Lehigh",
+        "Prairie View A&M Panthers":"Prairie View A&M","Clemson Tigers":"Clemson",
+        "Iowa Hawkeyes":"Iowa","Vanderbilt Commodores":"Vanderbilt",
+        "McNeese State Cowboys":"McNeese","McNeese Cowboys":"McNeese",
+        "Nebraska Cornhuskers":"Nebraska","Troy Trojans":"Troy",
+        "North Carolina Tar Heels":"North Carolina","VCU Rams":"VCU",
+        "Illinois Fighting Illini":"Illinois","Penn Quakers":"Penn",
+        "Pennsylvania Quakers":"Penn","Saint Mary's Gaels":"Saint Mary's",
+        "Texas A&M Aggies":"Texas A&M","Houston Cougars":"Houston",
+        "Idaho Vandals":"Idaho","Michigan Wolverines":"Michigan",
+        "Howard Bison":"Howard","UMBC Retrievers":"UMBC",
+        "Georgia Bulldogs":"Georgia","Saint Louis Billikens":"Saint Louis",
+        "Texas Tech Red Raiders":"Texas Tech","Akron Zips":"Akron",
+        "Alabama Crimson Tide":"Alabama","Hofstra Pride":"Hofstra",
+        "Tennessee Volunteers":"Tennessee","Miami (OH) RedHawks":"Miami (OH)",
+        "SMU Mustangs":"SMU","Virginia Cavaliers":"Virginia",
+        "Wright State Raiders":"Wright State","Kentucky Wildcats":"Kentucky",
+        "Santa Clara Broncos":"Santa Clara","Iowa State Cyclones":"Iowa State",
+        "Tennessee State Tigers":"Tennessee State",
+        "Texas Longhorns":"Texas",
+    }
+
     try:
         resp = requests.get(
             "https://api.the-odds-api.com/v4/sports/basketball_ncaab/odds",
@@ -85,9 +126,19 @@ def fetch_vegas_odds():
                         for o in mkt["outcomes"]:
                             am = o["price"]
                             prob = 100/(am+100) if am > 0 else abs(am)/(abs(am)+100)
-                            odds[o["name"]] = round(prob * 100, 1)
+                            full_name = o["name"]
+                            # Try direct mapping first
+                            short = API_NAME_MAP.get(full_name)
+                            if not short:
+                                # Fallback: try matching first word(s) to our TID keys
+                                for our_name in TID:
+                                    if full_name.startswith(our_name) or our_name in full_name:
+                                        short = our_name
+                                        break
+                            if short:
+                                odds[short] = round(prob * 100, 1)
         return odds
-    except Exception:
+    except Exception as e:
         return {}
 
 def wp(data, a, b):
@@ -407,6 +458,8 @@ def show_matchup(data, a, sa, b, sb, vegas=None):
             if edge_amt > 3:
                 edge_str += f" · **Ball Street edge: {edge_amt:.0f}% more on {edge_team}**"
             st.markdown(edge_str)
+        else:
+            st.caption("🎰 Vegas odds not yet available for this matchup")
 
     c1,c2,c3 = st.columns([2,5,2])
     with c1: st.markdown(f"**({sa}) {a}**")
@@ -456,7 +509,12 @@ def tab_bracket(data, all_brackets, vegas):
 
     # Quick summary bar
     ch = B.get("CHAMP", {})
-    ff_teams = [g["w"] for g in B.get("FF", [])]
+    # Get all 4 regional champions
+    ff_teams = []
+    for reg in ["East","West","South","Midwest"]:
+        r4 = B.get(reg, {}).get("R4", [])
+        if r4:
+            ff_teams.append(r4[0]["w"])
     n_upsets = sum(1 for r in ["East","West","South","Midwest"]
                    for rnd in ["R1","R2","R3","R4"]
                    for g in B.get(r,{}).get(rnd,[])
@@ -466,7 +524,10 @@ def tab_bracket(data, all_brackets, vegas):
         with cols[0]:
             st.metric("Predicted Champion", f"({ch['ws']}) {ch['w']}")
         with cols[1]:
-            st.metric("Final Four", " · ".join(ff_teams) if ff_teams else "—")
+            ff_str = " · ".join(ff_teams) if ff_teams else "—"
+            st.markdown(f"<div><p style='font-size:12px;color:#6b7280;margin-bottom:2px'>Final Four</p>"
+                        f"<p style='font-size:14px;font-weight:700;margin:0'>{ff_str}</p></div>",
+                        unsafe_allow_html=True)
         with cols[2]:
             st.metric("Upset Picks", f"{n_upsets} games")
         st.markdown("")
@@ -871,9 +932,11 @@ def tab_upsets(data, vegas):
 # ═══════════════════════════════════════════════
 def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
     if vegas:
-        st.sidebar.success(f"🎰 Vegas odds loaded ({len(vegas)} teams)")
+        # Count how many of our 68 tournament teams have odds
+        matched = sum(1 for name in TID if name in vegas)
+        st.sidebar.success(f"🎰 Vegas odds loaded ({matched} tournament teams)")
     else:
-        st.sidebar.info("Vegas odds not available")
+        st.sidebar.info("🎰 Vegas odds not available — games may not have started yet")
 
     if n_sims:
         st.sidebar.caption(f"Probabilities from {n_sims:,} tournament simulations")
