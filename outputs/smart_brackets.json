@@ -1,0 +1,2036 @@
+{
+  "chalk": {
+    "East": {
+      "R1": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Siena",
+          "sb": 16,
+          "pa": 0.9576,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Ohio State",
+          "sa": 8,
+          "b": "TCU",
+          "sb": 9,
+          "pa": 0.7027,
+          "w": "Ohio State",
+          "ws": 8,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Northern Iowa",
+          "sb": 12,
+          "pa": 0.9412,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Kansas",
+          "sa": 4,
+          "b": "Cal Baptist",
+          "sb": 13,
+          "pa": 0.8833,
+          "w": "Kansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Louisville",
+          "sa": 6,
+          "b": "South Florida",
+          "sb": 11,
+          "pa": 0.3969,
+          "w": "South Florida",
+          "ws": 11,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "North Dakota St",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCLA",
+          "sa": 7,
+          "b": "UCF",
+          "sb": 10,
+          "pa": 0.6031,
+          "w": "UCLA",
+          "ws": 7,
+          "reason": "model"
+        },
+        {
+          "a": "UConn",
+          "sa": 2,
+          "b": "Furman",
+          "sb": 15,
+          "pa": 0.9623,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Ohio State",
+          "sb": 8,
+          "pa": 0.9565,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Kansas",
+          "sb": 4,
+          "pa": 0.3654,
+          "w": "Kansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "South Florida",
+          "sa": 11,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.0435,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCLA",
+          "sa": 7,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.1471,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Kansas",
+          "sb": 4,
+          "pa": 0.7027,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.575,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        }
+      ]
+    },
+    "West": {
+      "R1": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "LIU",
+          "sb": 16,
+          "pa": 0.7027,
+          "w": "Arizona",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Villanova",
+          "sa": 8,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.2973,
+          "w": "Utah State",
+          "ws": 9,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "High Point",
+          "sb": 12,
+          "pa": 0.8667,
+          "w": "Wisconsin",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Arkansas",
+          "sa": 4,
+          "b": "Hawaii",
+          "sb": 13,
+          "pa": 0.9623,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "BYU",
+          "sa": 6,
+          "b": "NC State",
+          "sb": 11,
+          "pa": 0.7368,
+          "w": "BYU",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Kennesaw State",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Missouri",
+          "sb": 10,
+          "pa": 0.575,
+          "w": "Miami",
+          "ws": 7,
+          "reason": "model"
+        },
+        {
+          "a": "Purdue",
+          "sa": 2,
+          "b": "Queens",
+          "sb": 15,
+          "pa": 0.7368,
+          "w": "Purdue",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.575,
+          "w": "Arizona",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.2632,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "BYU",
+          "sa": 6,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.1333,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Purdue",
+          "sb": 2,
+          "pa": 0.3969,
+          "w": "Purdue",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.5179,
+          "w": "Arizona",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Purdue",
+          "sb": 2,
+          "pa": 0.5,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.3077,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        }
+      ]
+    },
+    "South": {
+      "R1": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Prairie View A&M",
+          "sb": 16,
+          "pa": 0.8833,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Clemson",
+          "sa": 8,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.2,
+          "w": "Iowa",
+          "ws": 9,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "McNeese",
+          "sb": 12,
+          "pa": 0.8701,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Nebraska",
+          "sa": 4,
+          "b": "Troy",
+          "sb": 13,
+          "pa": 0.7027,
+          "w": "Nebraska",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "VCU",
+          "sb": 11,
+          "pa": 0.7778,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Illinois",
+          "sa": 3,
+          "b": "Penn",
+          "sb": 14,
+          "pa": 0.9565,
+          "w": "Illinois",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Saint Mary's",
+          "sa": 7,
+          "b": "Texas A&M",
+          "sb": 10,
+          "pa": 0.3969,
+          "w": "Texas A&M",
+          "ws": 10,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Houston",
+          "sa": 2,
+          "b": "Idaho",
+          "sb": 15,
+          "pa": 0.9565,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.6667,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "Nebraska",
+          "sb": 4,
+          "pa": 0.6923,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Illinois",
+          "sb": 3,
+          "pa": 0.6031,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Texas A&M",
+          "sa": 10,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Vanderbilt",
+          "sb": 5,
+          "pa": 0.7368,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.2973,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.5179,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        }
+      ]
+    },
+    "Midwest": {
+      "R1": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Howard",
+          "sb": 16,
+          "pa": 0.9412,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Georgia",
+          "sa": 8,
+          "b": "Saint Louis",
+          "sb": 9,
+          "pa": 0.5179,
+          "w": "Georgia",
+          "ws": 8,
+          "reason": "model"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Akron",
+          "sb": 12,
+          "pa": 0.7273,
+          "w": "Texas Tech",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Alabama",
+          "sa": 4,
+          "b": "Hofstra",
+          "sb": 13,
+          "pa": 0.8529,
+          "w": "Alabama",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Tennessee",
+          "sa": 6,
+          "b": "SMU",
+          "sb": 11,
+          "pa": 0.2632,
+          "w": "SMU",
+          "ws": 11,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Wright State",
+          "sb": 14,
+          "pa": 0.8833,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Kentucky",
+          "sa": 7,
+          "b": "Santa Clara",
+          "sb": 10,
+          "pa": 0.247,
+          "w": "Santa Clara",
+          "ws": 10,
+          "reason": "model_upset"
+        },
+        {
+          "a": "Iowa State",
+          "sa": 2,
+          "b": "Tennessee State",
+          "sb": 15,
+          "pa": 0.7778,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Georgia",
+          "sb": 8,
+          "pa": 0.8701,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Alabama",
+          "sb": 4,
+          "pa": 0.3721,
+          "w": "Alabama",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "SMU",
+          "sa": 11,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.3077,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Santa Clara",
+          "sa": 10,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Alabama",
+          "sb": 4,
+          "pa": 0.8701,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.7778,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        }
+      ]
+    },
+    "FF": [
+      {
+        "a": "Duke",
+        "sa": 1,
+        "b": "Gonzaga",
+        "sb": 3,
+        "pa": 0.3969,
+        "w": "Gonzaga",
+        "ws": 3,
+        "ra": "East",
+        "rb": "West",
+        "reason": "model"
+      },
+      {
+        "a": "Florida",
+        "sa": 1,
+        "b": "Michigan",
+        "sb": 1,
+        "pa": 0.1299,
+        "w": "Michigan",
+        "ws": 1,
+        "ra": "South",
+        "rb": "Midwest",
+        "reason": "model"
+      }
+    ],
+    "CHAMP": {
+      "a": "Gonzaga",
+      "sa": 3,
+      "b": "Michigan",
+      "sb": 1,
+      "pa": 0.2727,
+      "w": "Michigan",
+      "ws": 1,
+      "reason": "model"
+    }
+  },
+  "balanced": {
+    "East": {
+      "R1": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Siena",
+          "sb": 16,
+          "pa": 0.9576,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Ohio State",
+          "sa": 8,
+          "b": "TCU",
+          "sb": 9,
+          "pa": 0.7027,
+          "w": "Ohio State",
+          "ws": 8,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Northern Iowa",
+          "sb": 12,
+          "pa": 0.9412,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Kansas",
+          "sa": 4,
+          "b": "Cal Baptist",
+          "sb": 13,
+          "pa": 0.8833,
+          "w": "Kansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Louisville",
+          "sa": 6,
+          "b": "South Florida",
+          "sb": 11,
+          "pa": 0.3969,
+          "w": "South Florida",
+          "ws": 11,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "North Dakota St",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCLA",
+          "sa": 7,
+          "b": "UCF",
+          "sb": 10,
+          "pa": 0.6031,
+          "w": "UCLA",
+          "ws": 7,
+          "reason": "model"
+        },
+        {
+          "a": "UConn",
+          "sa": 2,
+          "b": "Furman",
+          "sb": 15,
+          "pa": 0.9623,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Ohio State",
+          "sb": 8,
+          "pa": 0.9565,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Kansas",
+          "sb": 4,
+          "pa": 0.3654,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "South Florida",
+          "sa": 11,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.0435,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCLA",
+          "sa": 7,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.1471,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "St. John's",
+          "sb": 5,
+          "pa": 0.5,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.1471,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        }
+      ]
+    },
+    "West": {
+      "R1": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "LIU",
+          "sb": 16,
+          "pa": 0.7027,
+          "w": "Arizona",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Villanova",
+          "sa": 8,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.2973,
+          "w": "Utah State",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "High Point",
+          "sb": 12,
+          "pa": 0.8667,
+          "w": "Wisconsin",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Arkansas",
+          "sa": 4,
+          "b": "Hawaii",
+          "sb": 13,
+          "pa": 0.9623,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "BYU",
+          "sa": 6,
+          "b": "NC State",
+          "sb": 11,
+          "pa": 0.7368,
+          "w": "BYU",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Kennesaw State",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Missouri",
+          "sb": 10,
+          "pa": 0.575,
+          "w": "Miami",
+          "ws": 7,
+          "reason": "model"
+        },
+        {
+          "a": "Purdue",
+          "sa": 2,
+          "b": "Queens",
+          "sb": 15,
+          "pa": 0.7368,
+          "w": "Purdue",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.575,
+          "w": "Utah State",
+          "ws": 9,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.2632,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "BYU",
+          "sa": 6,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.1333,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Purdue",
+          "sb": 2,
+          "pa": 0.3969,
+          "w": "Miami",
+          "ws": 7,
+          "reason": "strategic_upset"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Utah State",
+          "sa": 9,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.2632,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Miami",
+          "sb": 7,
+          "pa": 0.7778,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Arkansas",
+          "sa": 4,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.5,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "strategic_upset"
+        }
+      ]
+    },
+    "South": {
+      "R1": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Prairie View A&M",
+          "sb": 16,
+          "pa": 0.8833,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Clemson",
+          "sa": 8,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.2,
+          "w": "Iowa",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "McNeese",
+          "sb": 12,
+          "pa": 0.8701,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Nebraska",
+          "sa": 4,
+          "b": "Troy",
+          "sb": 13,
+          "pa": 0.7027,
+          "w": "Nebraska",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "VCU",
+          "sb": 11,
+          "pa": 0.7778,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Illinois",
+          "sa": 3,
+          "b": "Penn",
+          "sb": 14,
+          "pa": 0.9565,
+          "w": "Illinois",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Saint Mary's",
+          "sa": 7,
+          "b": "Texas A&M",
+          "sb": 10,
+          "pa": 0.3969,
+          "w": "Texas A&M",
+          "ws": 10,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Houston",
+          "sa": 2,
+          "b": "Idaho",
+          "sb": 15,
+          "pa": 0.9565,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.6667,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "Nebraska",
+          "sb": 4,
+          "pa": 0.6923,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Illinois",
+          "sb": 3,
+          "pa": 0.6031,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Texas A&M",
+          "sa": 10,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Vanderbilt",
+          "sb": 5,
+          "pa": 0.7368,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.2973,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.5179,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "strategic_upset"
+        }
+      ]
+    },
+    "Midwest": {
+      "R1": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Howard",
+          "sb": 16,
+          "pa": 0.9412,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Georgia",
+          "sa": 8,
+          "b": "Saint Louis",
+          "sb": 9,
+          "pa": 0.5179,
+          "w": "Saint Louis",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Akron",
+          "sb": 12,
+          "pa": 0.7273,
+          "w": "Texas Tech",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Alabama",
+          "sa": 4,
+          "b": "Hofstra",
+          "sb": 13,
+          "pa": 0.8529,
+          "w": "Alabama",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Tennessee",
+          "sa": 6,
+          "b": "SMU",
+          "sb": 11,
+          "pa": 0.2632,
+          "w": "SMU",
+          "ws": 11,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Wright State",
+          "sb": 14,
+          "pa": 0.8833,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Kentucky",
+          "sa": 7,
+          "b": "Santa Clara",
+          "sb": 10,
+          "pa": 0.247,
+          "w": "Santa Clara",
+          "ws": 10,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Iowa State",
+          "sa": 2,
+          "b": "Tennessee State",
+          "sb": 15,
+          "pa": 0.7778,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Saint Louis",
+          "sb": 9,
+          "pa": 0.9623,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Alabama",
+          "sb": 4,
+          "pa": 0.3721,
+          "w": "Texas Tech",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "SMU",
+          "sa": 11,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.3077,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Santa Clara",
+          "sa": 10,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Texas Tech",
+          "sb": 5,
+          "pa": 0.7368,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "strategic_upset"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.7778,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        }
+      ]
+    },
+    "FF": [
+      {
+        "a": "Michigan State",
+        "sa": 3,
+        "b": "Arkansas",
+        "sb": 4,
+        "pa": 0.8701,
+        "w": "Michigan State",
+        "ws": 3,
+        "ra": "East",
+        "rb": "West",
+        "reason": "model"
+      },
+      {
+        "a": "Houston",
+        "sa": 2,
+        "b": "Michigan",
+        "sb": 1,
+        "pa": 0.3077,
+        "w": "Michigan",
+        "ws": 1,
+        "ra": "South",
+        "rb": "Midwest",
+        "reason": "model"
+      }
+    ],
+    "CHAMP": {
+      "a": "Michigan State",
+      "sa": 3,
+      "b": "Michigan",
+      "sb": 1,
+      "pa": 0.6031,
+      "w": "Michigan State",
+      "ws": 3,
+      "reason": "model"
+    }
+  },
+  "aggressive": {
+    "East": {
+      "R1": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Siena",
+          "sb": 16,
+          "pa": 0.9576,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Ohio State",
+          "sa": 8,
+          "b": "TCU",
+          "sb": 9,
+          "pa": 0.7027,
+          "w": "Ohio State",
+          "ws": 8,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Northern Iowa",
+          "sb": 12,
+          "pa": 0.9412,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Kansas",
+          "sa": 4,
+          "b": "Cal Baptist",
+          "sb": 13,
+          "pa": 0.8833,
+          "w": "Kansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Louisville",
+          "sa": 6,
+          "b": "South Florida",
+          "sb": 11,
+          "pa": 0.3969,
+          "w": "South Florida",
+          "ws": 11,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "North Dakota St",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCLA",
+          "sa": 7,
+          "b": "UCF",
+          "sb": 10,
+          "pa": 0.6031,
+          "w": "UCF",
+          "ws": 10,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "UConn",
+          "sa": 2,
+          "b": "Furman",
+          "sb": 15,
+          "pa": 0.9623,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "Ohio State",
+          "sb": 8,
+          "pa": 0.9565,
+          "w": "Duke",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Kansas",
+          "sb": 4,
+          "pa": 0.3654,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "South Florida",
+          "sa": 11,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.0435,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "UCF",
+          "sa": 10,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.1167,
+          "w": "UConn",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Duke",
+          "sa": 1,
+          "b": "St. John's",
+          "sb": 5,
+          "pa": 0.5,
+          "w": "St. John's",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Michigan State",
+          "sa": 3,
+          "b": "UConn",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "strategic_upset"
+        }
+      ],
+      "R4": [
+        {
+          "a": "St. John's",
+          "sa": 5,
+          "b": "Michigan State",
+          "sb": 3,
+          "pa": 0.1471,
+          "w": "Michigan State",
+          "ws": 3,
+          "reason": "model"
+        }
+      ]
+    },
+    "West": {
+      "R1": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "LIU",
+          "sb": 16,
+          "pa": 0.7027,
+          "w": "Arizona",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Villanova",
+          "sa": 8,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.2973,
+          "w": "Utah State",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "High Point",
+          "sb": 12,
+          "pa": 0.8667,
+          "w": "Wisconsin",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Arkansas",
+          "sa": 4,
+          "b": "Hawaii",
+          "sb": 13,
+          "pa": 0.9623,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "BYU",
+          "sa": 6,
+          "b": "NC State",
+          "sb": 11,
+          "pa": 0.7368,
+          "w": "NC State",
+          "ws": 11,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Kennesaw State",
+          "sb": 14,
+          "pa": 0.9623,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Missouri",
+          "sb": 10,
+          "pa": 0.575,
+          "w": "Miami",
+          "ws": 7,
+          "reason": "model"
+        },
+        {
+          "a": "Purdue",
+          "sa": 2,
+          "b": "Queens",
+          "sb": 15,
+          "pa": 0.7368,
+          "w": "Purdue",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Arizona",
+          "sa": 1,
+          "b": "Utah State",
+          "sb": 9,
+          "pa": 0.575,
+          "w": "Utah State",
+          "ws": 9,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Wisconsin",
+          "sa": 5,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.2632,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "NC State",
+          "sa": 11,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.2973,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Miami",
+          "sa": 7,
+          "b": "Purdue",
+          "sb": 2,
+          "pa": 0.3969,
+          "w": "Miami",
+          "ws": 7,
+          "reason": "strategic_upset"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Utah State",
+          "sa": 9,
+          "b": "Arkansas",
+          "sb": 4,
+          "pa": 0.2632,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Gonzaga",
+          "sa": 3,
+          "b": "Miami",
+          "sb": 7,
+          "pa": 0.7778,
+          "w": "Gonzaga",
+          "ws": 3,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Arkansas",
+          "sa": 4,
+          "b": "Gonzaga",
+          "sb": 3,
+          "pa": 0.5,
+          "w": "Arkansas",
+          "ws": 4,
+          "reason": "strategic_upset"
+        }
+      ]
+    },
+    "South": {
+      "R1": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Prairie View A&M",
+          "sb": 16,
+          "pa": 0.8833,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Clemson",
+          "sa": 8,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.2,
+          "w": "Iowa",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "McNeese",
+          "sb": 12,
+          "pa": 0.8701,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Nebraska",
+          "sa": 4,
+          "b": "Troy",
+          "sb": 13,
+          "pa": 0.7027,
+          "w": "Nebraska",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "VCU",
+          "sb": 11,
+          "pa": 0.7778,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "model"
+        },
+        {
+          "a": "Illinois",
+          "sa": 3,
+          "b": "Penn",
+          "sb": 14,
+          "pa": 0.9565,
+          "w": "Illinois",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Saint Mary's",
+          "sa": 7,
+          "b": "Texas A&M",
+          "sb": 10,
+          "pa": 0.3969,
+          "w": "Texas A&M",
+          "ws": 10,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Houston",
+          "sa": 2,
+          "b": "Idaho",
+          "sb": 15,
+          "pa": 0.9565,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Iowa",
+          "sb": 9,
+          "pa": 0.6667,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Vanderbilt",
+          "sa": 5,
+          "b": "Nebraska",
+          "sb": 4,
+          "pa": 0.6923,
+          "w": "Vanderbilt",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Illinois",
+          "sb": 3,
+          "pa": 0.6031,
+          "w": "North Carolina",
+          "ws": 6,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "Texas A&M",
+          "sa": 10,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Vanderbilt",
+          "sb": 5,
+          "pa": 0.7368,
+          "w": "Florida",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "North Carolina",
+          "sa": 6,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.2973,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Florida",
+          "sa": 1,
+          "b": "Houston",
+          "sb": 2,
+          "pa": 0.5179,
+          "w": "Houston",
+          "ws": 2,
+          "reason": "strategic_upset"
+        }
+      ]
+    },
+    "Midwest": {
+      "R1": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Howard",
+          "sb": 16,
+          "pa": 0.9412,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Georgia",
+          "sa": 8,
+          "b": "Saint Louis",
+          "sb": 9,
+          "pa": 0.5179,
+          "w": "Saint Louis",
+          "ws": 9,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Akron",
+          "sb": 12,
+          "pa": 0.7273,
+          "w": "Texas Tech",
+          "ws": 5,
+          "reason": "model"
+        },
+        {
+          "a": "Alabama",
+          "sa": 4,
+          "b": "Hofstra",
+          "sb": 13,
+          "pa": 0.8529,
+          "w": "Alabama",
+          "ws": 4,
+          "reason": "model"
+        },
+        {
+          "a": "Tennessee",
+          "sa": 6,
+          "b": "SMU",
+          "sb": 11,
+          "pa": 0.2632,
+          "w": "SMU",
+          "ws": 11,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Wright State",
+          "sb": 14,
+          "pa": 0.8833,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Kentucky",
+          "sa": 7,
+          "b": "Santa Clara",
+          "sb": 10,
+          "pa": 0.247,
+          "w": "Santa Clara",
+          "ws": 10,
+          "reason": "upset_pick"
+        },
+        {
+          "a": "Iowa State",
+          "sa": 2,
+          "b": "Tennessee State",
+          "sb": 15,
+          "pa": 0.7778,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R2": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Saint Louis",
+          "sb": 9,
+          "pa": 0.9623,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Texas Tech",
+          "sa": 5,
+          "b": "Alabama",
+          "sb": 4,
+          "pa": 0.3721,
+          "w": "Texas Tech",
+          "ws": 5,
+          "reason": "strategic_upset"
+        },
+        {
+          "a": "SMU",
+          "sa": 11,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.3077,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "model"
+        },
+        {
+          "a": "Santa Clara",
+          "sa": 10,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.0435,
+          "w": "Iowa State",
+          "ws": 2,
+          "reason": "model"
+        }
+      ],
+      "R3": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Texas Tech",
+          "sb": 5,
+          "pa": 0.7368,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        },
+        {
+          "a": "Virginia",
+          "sa": 3,
+          "b": "Iowa State",
+          "sb": 2,
+          "pa": 0.6031,
+          "w": "Virginia",
+          "ws": 3,
+          "reason": "strategic_upset"
+        }
+      ],
+      "R4": [
+        {
+          "a": "Michigan",
+          "sa": 1,
+          "b": "Virginia",
+          "sb": 3,
+          "pa": 0.7778,
+          "w": "Michigan",
+          "ws": 1,
+          "reason": "model"
+        }
+      ]
+    },
+    "FF": [
+      {
+        "a": "Michigan State",
+        "sa": 3,
+        "b": "Arkansas",
+        "sb": 4,
+        "pa": 0.8701,
+        "w": "Michigan State",
+        "ws": 3,
+        "ra": "East",
+        "rb": "West",
+        "reason": "model"
+      },
+      {
+        "a": "Houston",
+        "sa": 2,
+        "b": "Michigan",
+        "sb": 1,
+        "pa": 0.3077,
+        "w": "Michigan",
+        "ws": 1,
+        "ra": "South",
+        "rb": "Midwest",
+        "reason": "model"
+      }
+    ],
+    "CHAMP": {
+      "a": "Michigan State",
+      "sa": 3,
+      "b": "Michigan",
+      "sb": 1,
+      "pa": 0.6031,
+      "w": "Michigan State",
+      "ws": 3,
+      "reason": "model"
+    }
+  }
+}

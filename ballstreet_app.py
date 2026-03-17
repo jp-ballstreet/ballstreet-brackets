@@ -127,7 +127,19 @@ def load_monte_carlo():
 # ═══════════════════════════════════════════════
 @st.cache_data
 def simulate(_n):
+    """Load pre-built smart bracket. Falls back to deterministic if not available."""
+    import json
+    smart_path = OUTPUT_DIR / "smart_brackets.json"
+    if smart_path.exists():
+        with open(smart_path) as f:
+            all_brackets = json.load(f)
+        return all_brackets
+    # Fallback: build deterministic bracket
     data = load_app_data()
+    B_chalk = _build_deterministic(data)
+    return {"chalk": B_chalk, "balanced": B_chalk, "aggressive": B_chalk}
+
+def _build_deterministic(data):
     B = {}
     for reg, teams in REGIONS.items():
         rnds = {}
@@ -135,7 +147,7 @@ def simulate(_n):
         for i in range(0,16,2):
             na,sa = teams[i]; nb,sb = teams[i+1]
             pa = wp(data, na, nb)
-            r1.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,
+            r1.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,reason="model",
                            w=na if pa>=0.5 else nb, ws=sa if pa>=0.5 else sb))
         rnds["R1"] = r1
         for rn in [2,3,4]:
@@ -145,7 +157,7 @@ def simulate(_n):
                 na,sa = prev[i]["w"],prev[i]["ws"]
                 nb,sb = prev[i+1]["w"],prev[i+1]["ws"]
                 pa = wp(data, na, nb)
-                cur.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,
+                cur.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,reason="model",
                                 w=na if pa>=0.5 else nb, ws=sa if pa>=0.5 else sb))
             rnds[f"R{rn}"] = cur
         B[reg] = rnds
@@ -154,13 +166,13 @@ def simulate(_n):
         ca, cb = B[ra]["R4"][0], B[rb]["R4"][0]
         na,sa,nb,sb = ca["w"],ca["ws"],cb["w"],cb["ws"]
         pa = wp(data, na, nb)
-        ff.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,ra=ra,rb=rb,
+        ff.append(dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,ra=ra,rb=rb,reason="model",
                        w=na if pa>=0.5 else nb, ws=sa if pa>=0.5 else sb))
     B["FF"] = ff
     na,sa = ff[0]["w"],ff[0]["ws"]
     nb,sb = ff[1]["w"],ff[1]["ws"]
     pa = wp(data, na, nb)
-    B["CHAMP"] = dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,
+    B["CHAMP"] = dict(a=na,sa=sa,b=nb,sb=sb,pa=pa,reason="model",
                        w=na if pa>=0.5 else nb, ws=sa if pa>=0.5 else sb)
     return B
 
@@ -278,11 +290,15 @@ def bracket_html(B, region):
     </style>"""
 
     def game_card(g):
+        pa = float(g.get("pa", 0.5))
         ac = "w" if g["w"]==g["a"] else "l"
         bc = "w" if g["w"]==g["b"] else "l"
-        return f'''<div class="bkt-g">
-            <div class="bkt-t {ac}"><span class="bkt-s">{g["sa"]}</span><span class="bkt-n">{g["a"]}</span><span class="bkt-p">{g["pa"]*100:.0f}%</span></div>
-            <div class="bkt-t {bc}"><span class="bkt-s">{g["sb"]}</span><span class="bkt-n">{g["b"]}</span><span class="bkt-p">{(1-g["pa"])*100:.0f}%</span></div>
+        is_upset = g.get("reason","") in ("upset_pick","strategic_upset","model_upset")
+        border = "border-left:3px solid #f59e0b;" if is_upset else ""
+        fire = ' 🔥' if is_upset else ''
+        return f'''<div class="bkt-g" style="{border}">
+            <div class="bkt-t {ac}"><span class="bkt-s">{g["sa"]}</span><span class="bkt-n">{g["a"]}</span><span class="bkt-p">{pa*100:.0f}%</span></div>
+            <div class="bkt-t {bc}"><span class="bkt-s">{g["sb"]}</span><span class="bkt-n">{g["b"]}{fire}</span><span class="bkt-p">{(1-pa)*100:.0f}%</span></div>
         </div>'''
 
     SLOT = game_h + gap  # 64px per R1 game slot
@@ -422,9 +438,19 @@ def show_matchup(data, a, sa, b, sb, vegas=None):
 # ═══════════════════════════════════════════════
 # TAB: BALL STREET BRACKET
 # ═══════════════════════════════════════════════
-def tab_bracket(data, B, vegas):
+def tab_bracket(data, all_brackets, vegas):
     st.markdown("## 🏀 Ball Street Bracket")
-    st.markdown("*Our model's predicted tournament path*")
+    st.markdown("*Our model's predicted path — with strategic upsets built in*")
+
+    mode = st.radio("Bracket Style",["balanced","chalk","aggressive"],
+                    format_func={"balanced":"🎯 Balanced (recommended)","chalk":"📋 Chalk (safest)","aggressive":"🔥 Aggressive (max upsets)"}.get,
+                    horizontal=True, label_visibility="collapsed")
+
+    B = all_brackets.get(mode, all_brackets.get("balanced", {}))
+    if not B:
+        st.error("No bracket data found. Run 11_smart_bracket.py first.")
+        return
+
     view = st.radio("",["Regional Brackets","Final Four & Championship"],horizontal=True,label_visibility="collapsed")
     if view == "Final Four & Championship":
         st.html(ff_html(B))
@@ -442,7 +468,9 @@ def tab_bracket(data, B, vegas):
         st.markdown("---")
         rnd = st.selectbox("Explore matchups",list(range(1,5)),format_func=lambda x:RNAMES[x],key="bs_rnd")
         for g in B[region].get(f"R{rnd}",[]):
-            with st.expander(f"({g['sa']}) {g['a']} vs ({g['sb']}) {g['b']}"):
+            is_upset = g.get("reason","") in ("upset_pick","strategic_upset","model_upset")
+            label = f"{'🔥 ' if is_upset else ''}({g['sa']}) {g['a']} vs ({g['sb']}) {g['b']}"
+            with st.expander(label):
                 show_matchup(data, g["a"], g["sa"], g["b"], g["sb"], vegas)
 
 
@@ -933,14 +961,15 @@ def main():
         st.error("No predictions found. Run the pipeline first.")
         return
 
-    B = simulate(len(data["preds"]))
+    all_brackets = simulate(len(data["preds"]))
+    B = all_brackets.get("balanced", all_brackets.get("chalk", {}))
     vegas = fetch_vegas_odds()
     champ_pcts, ff_pcts, n_sims = load_monte_carlo()
 
     render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas)
 
     t1,t2,t3,t4,t5 = st.tabs(["🏀 Ball Street Bracket","✏️ Make Your Own","📋 My Bracket","⚔️ Explorer","🔥 Upsets"])
-    with t1: tab_bracket(data, B, vegas)
+    with t1: tab_bracket(data, all_brackets, vegas)
     with t2: tab_make_own(data, vegas)
     with t3: tab_view_bracket(data)
     with t4: tab_explorer(data, vegas)
