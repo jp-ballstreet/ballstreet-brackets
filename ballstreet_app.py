@@ -11,8 +11,7 @@ from collections import Counter
 st.set_page_config(page_title="Ball Street Brackets", page_icon="🏀", layout="wide")
 
 OUTPUT_DIR = Path("outputs")
-DATA_DIR = Path("data")
-ODDS_API_KEY = "b6ac60f1af8f858f067770fcd3aa0333"
+ODDS_API_KEY = st.secrets.get("ODDS_API_KEY", "b6ac60f1af8f858f067770fcd3aa0333")
 
 TID = {
     "Duke":1181,"Siena":1373,"Ohio State":1326,"TCU":1395,"St. John's":1385,
@@ -104,52 +103,23 @@ def wp(data, a, b):
 
 
 # ═══════════════════════════════════════════════
-# MONTE CARLO SIMULATION (true tournament probabilities)
+# TOURNAMENT PROBABILITIES (pre-computed from 10,000 Monte Carlo simulations)
 # ═══════════════════════════════════════════════
 @st.cache_data
-def run_monte_carlo(_data_len, n_sims=10000):
-    """Simulate full tournament N times to get true championship/FF/E8 probabilities."""
-    data = load_app_data()
-    np.random.seed(42)
-    champ_ct, ff_ct, e8_ct, s16_ct = Counter(), Counter(), Counter(), Counter()
-
-    for _ in range(n_sims):
-        region_winners = {}
-        for reg, teams in REGIONS.items():
-            bracket = []
-            for i in range(0,16,2):
-                na, sa = teams[i]; nb, sb = teams[i+1]
-                p = wp(data, na, nb)
-                w = (na,sa) if np.random.random() < p else (nb,sb)
-                bracket.append(w)
-            for rnd in range(3):
-                nxt = []
-                for i in range(0,len(bracket),2):
-                    a, b = bracket[i], bracket[i+1]
-                    p = wp(data, a[0], b[0])
-                    w = a if np.random.random() < p else b
-                    nxt.append(w)
-                    if rnd == 0: s16_ct[w[0]] += 1
-                    if rnd == 2: e8_ct[w[0]] += 1
-                bracket = nxt
-            region_winners[reg] = bracket[0]
-            ff_ct[bracket[0][0]] += 1
-
-        ff_w = []
-        for ra, rb in FF_PAIRS:
-            a, b = region_winners[ra], region_winners[rb]
-            p = wp(data, a[0], b[0])
-            ff_w.append(a if np.random.random() < p else b)
-
-        a, b = ff_w[0], ff_w[1]
-        p = wp(data, a[0], b[0])
-        champ = a if np.random.random() < p else b
-        champ_ct[champ[0]] += 1
-
-    def to_pct(counter):
-        return {k: round(v/n_sims*100, 1) for k, v in counter.most_common()}
-
-    return to_pct(champ_ct), to_pct(ff_ct), to_pct(e8_ct), to_pct(s16_ct)
+def load_monte_carlo():
+    """Load pre-computed tournament probabilities from 10,000 Monte Carlo simulations.
+    Run 08_monte_carlo.py to regenerate after model changes."""
+    import json
+    mc_path = OUTPUT_DIR / "monte_carlo_results.json"
+    if mc_path.exists():
+        with open(mc_path) as f:
+            mc = json.load(f)
+        champ = mc.get("championship", {})
+        ff = mc.get("final_four", {})
+        n = mc.get("n_sims", 10000)
+        return champ, ff, n
+    # Fallback: empty
+    return {}, {}, 0
 
 
 # ═══════════════════════════════════════════════
@@ -851,11 +821,14 @@ def tab_upsets(data, vegas):
 # ═══════════════════════════════════════════════
 # SIDEBAR
 # ═══════════════════════════════════════════════
-def render_sidebar(data, B, champ_pcts, ff_pcts, vegas):
+def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
     if vegas:
         st.sidebar.success(f"🎰 Vegas odds loaded ({len(vegas)} teams)")
     else:
         st.sidebar.info("Vegas odds not available")
+
+    if n_sims:
+        st.sidebar.caption(f"Probabilities from {n_sims:,} tournament simulations")
 
     # Champion probabilities (from Monte Carlo)
     st.sidebar.markdown("### 🏆 Championship Odds")
@@ -962,9 +935,9 @@ def main():
 
     B = simulate(len(data["preds"]))
     vegas = fetch_vegas_odds()
-    champ_pcts, ff_pcts, e8_pcts, s16_pcts = run_monte_carlo(len(data["preds"]))
+    champ_pcts, ff_pcts, n_sims = load_monte_carlo()
 
-    render_sidebar(data, B, champ_pcts, ff_pcts, vegas)
+    render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas)
 
     t1,t2,t3,t4,t5 = st.tabs(["🏀 Ball Street Bracket","✏️ Make Your Own","📋 My Bracket","⚔️ Explorer","🔥 Upsets"])
     with t1: tab_bracket(data, B, vegas)
