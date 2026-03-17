@@ -333,7 +333,8 @@ def bracket_html(B, region):
     # Champion
     if B[region].get("R4"):
         ch = B[region]["R4"][0]
-        wp_ch = ch["pa"]*100 if ch["w"]==ch["a"] else (1-ch["pa"])*100
+        ch_pa = float(ch.get("pa", 0.5))
+        wp_ch = ch_pa*100 if ch["w"]==ch["a"] else (1-ch_pa)*100
         champ_mt = LH + game_h//2 + 3*SLOT + SLOT//2
         html += f'''<div class="bkt-conn"><div class="bkt-line" style="height:30px;margin-top:{champ_mt}px"></div></div>
         <div class="bkt-champ" style="margin-top:{champ_mt - 15}px">
@@ -363,16 +364,18 @@ def ff_html(B):
     .ch-sub{color:#6b7280;font-size:12px}
     </style><div class="ff-wrap"><h3 style="color:#e2e8f0;margin-bottom:12px">🏀 Final Four</h3><div class="ff-row">'''
     for g in ff:
+        pa = float(g.get("pa", 0.5))
         ac = "w" if g["w"]==g["a"] else "l"
         bc = "w" if g["w"]==g["b"] else "l"
-        html += f'''<div class="ff-gm"><div class="ff-lbl">{g["ra"]} vs {g["rb"]}</div>
-            <div class="ff-t {ac}"><span>({g["sa"]}) {g["a"]}</span><span class="p">{g["pa"]*100:.0f}%</span></div>
-            <div class="ff-t {bc}"><span>({g["sb"]}) {g["b"]}</span><span class="p">{(1-g["pa"])*100:.0f}%</span></div></div>'''
+        html += f'''<div class="ff-gm"><div class="ff-lbl">{g.get("ra","")} vs {g.get("rb","")}</div>
+            <div class="ff-t {ac}"><span>({g["sa"]}) {g["a"]}</span><span class="p">{pa*100:.0f}%</span></div>
+            <div class="ff-t {bc}"><span>({g["sb"]}) {g["b"]}</span><span class="p">{(1-pa)*100:.0f}%</span></div></div>'''
     html += '</div>'
     if ch:
+        ch_pa = float(ch.get("pa", 0.5))
         html += f'''<div class="ch-box"><div class="ch-tag">🏆 Predicted Champion</div>
             <div class="ch-name">({ch["ws"]}) {ch["w"]}</div>
-            <div class="ch-sub">{max(ch["pa"],1-ch["pa"])*100:.0f}% in the title game</div></div>'''
+            <div class="ch-sub">{max(ch_pa,1-ch_pa)*100:.0f}% in the title game</div></div>'''
     html += '</div>'
     return html
 
@@ -442,14 +445,31 @@ def tab_bracket(data, all_brackets, vegas):
     st.markdown("## 🏀 Ball Street Bracket")
     st.markdown("*Our model's predicted path — with strategic upsets built in*")
 
-    mode = st.radio("Bracket Style",["balanced","chalk","aggressive"],
-                    format_func={"balanced":"🎯 Balanced (recommended)","chalk":"📋 Chalk (safest)","aggressive":"🔥 Aggressive (max upsets)"}.get,
+    mode = st.radio("Bracket Style",["chalk","balanced","aggressive"],
+                    format_func={"chalk":"📋 Chalk (safest)","balanced":"🎯 Balanced (recommended)","aggressive":"🔥 Aggressive (max upsets)"}.get,
                     horizontal=True, label_visibility="collapsed")
 
     B = all_brackets.get(mode, all_brackets.get("balanced", {}))
     if not B:
         st.error("No bracket data found. Run 11_smart_bracket.py first.")
         return
+
+    # Quick summary bar
+    ch = B.get("CHAMP", {})
+    ff_teams = [g["w"] for g in B.get("FF", [])]
+    n_upsets = sum(1 for r in ["East","West","South","Midwest"]
+                   for rnd in ["R1","R2","R3","R4"]
+                   for g in B.get(r,{}).get(rnd,[])
+                   if g.get("reason","") in ("upset_pick","strategic_upset","model_upset"))
+    if ch:
+        cols = st.columns(3)
+        with cols[0]:
+            st.metric("Predicted Champion", f"({ch['ws']}) {ch['w']}")
+        with cols[1]:
+            st.metric("Final Four", " · ".join(ff_teams) if ff_teams else "—")
+        with cols[2]:
+            st.metric("Upset Picks", f"{n_upsets} games")
+        st.markdown("")
 
     view = st.radio("",["Regional Brackets","Final Four & Championship"],horizontal=True,label_visibility="collapsed")
     if view == "Final Four & Championship":
@@ -478,7 +498,7 @@ def tab_bracket(data, all_brackets, vegas):
 # TAB: MAKE YOUR OWN
 # ═══════════════════════════════════════════════
 def tab_make_own(data, vegas):
-    st.markdown("## ✏️ Make Your Own Bracket")
+    st.markdown("## ✏️ Make My Own Bracket")
     st.markdown("*Pick winners round by round. Ball Street probabilities shown to guide you.*")
 
     # Initialize all region picks
@@ -771,7 +791,7 @@ def tab_view_bracket(data):
             if n_picks > 0:
                 st.html(user_bracket_html(reg))
             else:
-                st.info(f"No picks yet for {reg}. Go to 'Make Your Own' to start picking!")
+                st.info(f"No picks yet for {reg}. Go to 'Make My Own' to start picking!")
 
     # Final Four summary
     st.markdown("---")
@@ -799,8 +819,8 @@ def tab_view_bracket(data):
 # TAB: EXPLORER
 # ═══════════════════════════════════════════════
 def tab_explorer(data, vegas):
-    st.markdown("## ⚔️ Matchup Explorer")
-    st.markdown("*Pick any two tournament teams*")
+    st.markdown("## ⚔️ Head-to-Head Explorer")
+    st.markdown("*Pick any two tournament teams and see how they match up*")
     all_t = sorted(TID.keys())
     c1,c2 = st.columns(2)
     with c1: a = st.selectbox("Team A",all_t,index=all_t.index("Duke"),key="exa")
@@ -861,15 +881,26 @@ def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
     # Champion probabilities (from Monte Carlo)
     st.sidebar.markdown("### 🏆 Championship Odds")
     top_champs = sorted(champ_pcts.items(), key=lambda x:x[1], reverse=True)[:8]
+    champ_html = '<div style="font-family:-apple-system,sans-serif;font-size:13px">'
     for name, pct in top_champs:
-        n = ID_TO_NAME.get(name, str(name))
+        # MC keys are team names; find seed from bracket
+        n = name  # Already a name string
         seed = None
         for _,tl in REGIONS.items():
             for tn,ts in tl:
                 if tn==n: seed=ts
         if seed:
-            bar = "█" * int(pct / 3) + "░" * (10 - int(pct / 3))
-            st.sidebar.markdown(f"({seed}) **{n}** — {pct:.0f}%")
+            bar_w = min(pct * 3, 100)  # Scale so ~33% fills the bar
+            champ_html += f'''<div style="margin-bottom:6px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+                    <span>({seed}) <b>{n}</b></span><span style="color:#34d399">{pct:.0f}%</span>
+                </div>
+                <div style="background:#1e293b;border-radius:3px;height:6px;overflow:hidden">
+                    <div style="background:#34d399;height:100%;width:{bar_w}%;border-radius:3px"></div>
+                </div>
+            </div>'''
+    champ_html += '</div>'
+    st.sidebar.html(champ_html)
 
     st.sidebar.markdown("---")
 
@@ -877,13 +908,12 @@ def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
     st.sidebar.markdown("### 🏀 Final Four Favorites")
     top_ff = sorted(ff_pcts.items(), key=lambda x:x[1], reverse=True)[:6]
     for name, pct in top_ff:
-        n = ID_TO_NAME.get(name, str(name))
         seed = None
         for _,tl in REGIONS.items():
             for tn,ts in tl:
-                if tn==n: seed=ts
+                if tn==name: seed=ts
         if seed:
-            st.sidebar.markdown(f"({seed}) {n} — {pct:.0f}%")
+            st.sidebar.markdown(f"({seed}) {name} — {pct:.0f}%")
 
     st.sidebar.markdown("---")
 
@@ -891,11 +921,10 @@ def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
     st.sidebar.markdown("### 🐴 Cinderella Watch")
     cinderellas = []
     for name, pct in ff_pcts.items():
-        n = ID_TO_NAME.get(name, str(name))
         for _,tl in REGIONS.items():
             for tn,ts in tl:
-                if tn==n and ts >= 7 and pct > 1:
-                    cinderellas.append((n, ts, pct))
+                if tn==name and ts >= 7 and pct > 1:
+                    cinderellas.append((name, ts, pct))
     cinderellas.sort(key=lambda x:x[2], reverse=True)
     if cinderellas:
         for n, s, p in cinderellas[:5]:
@@ -949,6 +978,126 @@ def render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas):
 
 
 # ═══════════════════════════════════════════════
+# TAB: ABOUT
+# ═══════════════════════════════════════════════
+def tab_about():
+    st.markdown("## ℹ️ About Ball Street Brackets")
+
+    st.markdown("""
+### How to Use This App
+
+**🏀 Ball Street Bracket** — Our model's predicted bracket for the 2026 tournament.
+Toggle between three styles: **Chalk** picks the model favorite every game,
+**Balanced** adds ~7 strategic upset picks (matching the historical average),
+and **Aggressive** goes all-in on chaos. Expand any matchup to see the full breakdown.
+
+**✏️ Make My Own** — Build your bracket round by round. Select a region and pick
+winners by clicking team names. Our win probabilities are shown next to each matchup
+to help you decide. Complete all four regions to unlock Final Four and Championship picks.
+
+**📋 My Bracket** — See all your picks visualized in a bracket format, with a summary
+of your progress and champion.
+
+**⚔️ H2H Explorer** — Compare any two tournament teams head-to-head. See how they
+grade out across offense, defense, shooting, and more.
+
+**🔥 Upset Watch** — Every first-round game ranked by upset potential. We combine
+our model probability, historical upset rates for that seed matchup, and
+team-specific factors to identify the most likely upsets.
+
+---
+
+### How the Model Works
+
+Our predictions come from a **machine learning ensemble** trained on every
+NCAA Tournament game from 2008 to 2025 (excluding 2020, which was canceled).
+
+**The process in a nutshell:**
+
+1. **Data collection** — We pull team ratings from KenPom (the gold standard for
+college basketball analytics), Barttorvik, and official NCAA box scores. Each team
+gets a profile covering ~50 statistical categories.
+
+2. **Feature engineering** — For every possible matchup, we compute the *difference*
+between the two teams across categories like offensive efficiency, defensive efficiency,
+shooting accuracy, rebounding, ball security, and more. We also factor in momentum
+(last 10 games, win streak, conference tournament performance) and coaching track record.
+
+3. **Model training** — We train three different models — XGBoost (a gradient boosting
+algorithm), LightGBM (another boosting approach), and Logistic Regression — then blend
+them into an optimized ensemble. The blend is tuned to minimize prediction error using
+leave-one-season-out cross-validation, meaning when we predict 2024, the model has
+never seen 2024 data.
+
+4. **Calibration** — Raw model outputs are passed through isotonic calibration so that
+when we say a team has a 70% chance, they actually win about 70% of the time.
+
+5. **Tournament simulation** — We run 10,000 Monte Carlo simulations of the full bracket,
+randomly drawing each game result based on our probabilities. This gives us the true
+championship and Final Four odds you see in the sidebar.
+
+---
+
+### Key Numbers
+
+| Metric | Value |
+|---|---|
+| Training data | 1,129 tournament games (2008–2025) |
+| Features per matchup | 51 |
+| Cross-validated accuracy | 74% |
+| Cross-validated log loss | 0.50 |
+| Simulations for championship odds | 10,000 |
+
+---
+
+### What the Grades Mean
+
+When you open a matchup breakdown, each team gets letter grades (A+ through F)
+across categories like Offense, Defense, and Shooting. These grades are
+**percentile ranks among the 68 tournament teams** — not absolute ratings.
+
+- **A+** = Top 10% of tournament teams in this category
+- **A** = Top 20%
+- **B+** = Top 30%
+- **C** = Average for a tournament team
+- **F** = Bottom of the tournament field
+
+A team can be "F" in a category and still be a good team overall — it just means
+they're the weakest tournament team in that specific area.
+
+---
+
+### The Upset Framework
+
+Our upset scoring combines three factors:
+
+- **Model probability (45%)** — What our ML model thinks the underdog's win chance is
+- **Historical rate (30%)** — How often this seed matchup produces upsets
+  (for example, 12-seeds beat 5-seeds 41% of the time historically)
+- **Team factors (25%)** — Three-point shooting, defensive strength, low turnovers,
+  experienced coach, and whether the favorite has vulnerabilities
+
+Games scoring above 40 are automatic upset picks. Games between 30–40 are "lean"
+candidates where we pick a few more to hit the historical average of ~7 first-round upsets.
+
+---
+
+### Vegas Odds
+
+When available, we show Vegas implied probabilities alongside our model's predictions.
+The **"Ball Street edge"** tells you where our model disagrees with the betting market
+by more than 5 percentage points — these are the games where we see value that the
+market might be missing.
+
+Vegas odds are refreshed once every 24 hours to conserve API usage.
+
+---
+
+*Built by Ball Street Sports · March 2026*
+""")
+
+
+# ═══════════════════════════════════════════════
 # MAIN
 # ═══════════════════════════════════════════════
 def main():
@@ -968,12 +1117,13 @@ def main():
 
     render_sidebar(data, B, champ_pcts, ff_pcts, n_sims, vegas)
 
-    t1,t2,t3,t4,t5 = st.tabs(["🏀 Ball Street Bracket","✏️ Make Your Own","📋 My Bracket","⚔️ Explorer","🔥 Upsets"])
+    t1,t2,t3,t4,t5,t6 = st.tabs(["🏀 Ball Street Bracket","✏️ Make My Own","📋 My Bracket","⚔️ H2H Explorer","🔥 Upset Watch","ℹ️ About"])
     with t1: tab_bracket(data, all_brackets, vegas)
     with t2: tab_make_own(data, vegas)
     with t3: tab_view_bracket(data)
     with t4: tab_explorer(data, vegas)
     with t5: tab_upsets(data, vegas)
+    with t6: tab_about()
 
     st.markdown("---")
     st.caption("Ball Street Sports · ML predictions from 2008-2025 NCAA tournament data · Not gambling advice")
