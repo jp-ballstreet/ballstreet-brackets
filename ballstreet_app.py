@@ -52,7 +52,7 @@ REGIONS = {
                ("Tennessee",6),("SMU",11),("Virginia",3),("Wright State",14),
                ("Kentucky",7),("Santa Clara",10),("Iowa State",2),("Tennessee State",15)],
 }
-FF_PAIRS = [("East","West"),("South","Midwest")]
+FF_PAIRS = [("East","South"),("West","Midwest")]
 RNAMES = {1:"Round of 64",2:"Round of 32",3:"Sweet 16",4:"Elite 8",5:"Final Four",6:"Championship"}
 
 
