@@ -1424,9 +1424,9 @@
           "b": "UCF",
           "sb": 10,
           "pa": 0.6031,
-          "w": "UCF",
-          "ws": 10,
-          "reason": "upset_pick"
+          "w": "UCLA",
+          "ws": 7,
+          "reason": "model"
         },
         {
           "a": "UConn",
@@ -1471,11 +1471,11 @@
           "reason": "model"
         },
         {
-          "a": "UCF",
-          "sa": 10,
+          "a": "UCLA",
+          "sa": 7,
           "b": "UConn",
           "sb": 2,
-          "pa": 0.1167,
+          "pa": 0.1471,
           "w": "UConn",
           "ws": 2,
           "reason": "model"
@@ -1564,9 +1564,9 @@
           "b": "NC State",
           "sb": 11,
           "pa": 0.7368,
-          "w": "NC State",
-          "ws": 11,
-          "reason": "upset_pick"
+          "w": "BYU",
+          "ws": 6,
+          "reason": "model"
         },
         {
           "a": "Gonzaga",
@@ -1621,11 +1621,11 @@
           "reason": "model"
         },
         {
-          "a": "NC State",
-          "sa": 11,
+          "a": "BYU",
+          "sa": 6,
           "b": "Gonzaga",
           "sb": 3,
-          "pa": 0.2973,
+          "pa": 0.1333,
           "w": "Gonzaga",
           "ws": 3,
           "reason": "model"
